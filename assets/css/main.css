@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+ /* Tailwind CSS Classes */
+ #header .menu-list a {
+    @apply text-uppercase font-medium tracking-wider;
+  }
+
+  ul li.active a {
+    @apply text-yellow-500; /* یا هر رنگ دیگری که دلتان بخواهد */
+  }
+
+  .stellarnav>ul>li>a {
+    @apply py-2 px-4; /* تنظیم پدینگ به صورت 10px 20px */
+  }
