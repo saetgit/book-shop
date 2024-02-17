@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="" dir="rtl">
     <NavBar />
-    <div class="container mx-auto mt-8">
+    <div>
       <slot />
     </div>
     <Footer />
