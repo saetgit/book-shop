@@ -20,7 +20,7 @@ const handleItemClick = (index) => {
     <header>
         <nav>
             <div
-                class="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between py-5 bg-[#f3f2ec] border-b-[1px] border-solid border-[#E0E0E0]">
+                class=" max-w-screen-xl mx-auto flex flex-wrap items-center justify-between py-5 bg-[#f3f2ec] border-b-[1px] border-solid border-[#E0E0E0]">
 
                 <div class="flex items-center space-x-4">
                     <ul class="flex items-center text-[#777] cursor-pointer  font-iransans font-semibold">
