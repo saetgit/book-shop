@@ -1,40 +1,69 @@
-<script setup lang="ts">
-import { object, string, type InferType } from 'yup'
-import type { FormSubmitEvent } from '#ui/types'
-
-const schema = object({
-    email: string().email('Invalid email').required('Required'),
-    password: string()
-        .min(8, 'Must be at least 8 characters')
-        .required('Required')
-})
-
-type Schema = InferType<typeof schema>
-
-const state = reactive({
-    email: undefined,
-    password: undefined
-})
-
-async function onSubmit(event: FormSubmitEvent<Schema>) {
-    // Do something with event.data
-    console.log(event.data)
-}
-</script>
-
 <template>
-    <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
-        <UFormGroup label="Email" name="email">
-            <UInput v-model="state.email" />
-        </UFormGroup>
-
-        <UFormGroup label="Password" name="password">
-            <UInput v-model="state.password" type="password" />
-        </UFormGroup>
-
-        <UButton type="submit">
-            Submit
-        </UButton>
-    </UForm>
+  <div class="min-h-screen flex items-center justify-center">
+    <form
+      class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-96"
+      @submit.prevent="login"
+    >
+      صفحه ورود
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+          ایمیل
+        </label>
+        <input
+          v-model="email"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="email"
+          type="text"
+          placeholder="ایمیل"
+        />
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+          رمزعبور
+        </label>
+        <input
+          v-model="password"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="password"
+          type="password"
+          placeholder="رمزعبور"
+        />
+      </div>
+      <div class="flex items-center justify-between">
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
+        >
+          ورود
+        </button>
+      </div>
+    </form>
+  </div>
 </template>
 
+<script setup>
+import { ref } from "vue";
+import axios from "axios";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const email = ref("eve.holt@reqres.in");
+const password = ref("cityslicka");
+
+const login = async () => {
+  try {
+    console.log("Logging in...");
+    const response = await axios.post("https://reqres.in/api/login", {
+      email: email.value,
+      password: password.value,
+    });
+
+    // Implement your store logic here
+
+    router.push("/");
+    console.log("Login successful!");
+  } catch (error) {
+    console.error("Login failed:", error);
+  }
+};
+</script>
