@@ -47,6 +47,9 @@ const handleItemClick = (index) => {
             </li>
           </ul>
         </div>
+        <div>
+          <div><span>خروج</span></div>
+        </div>
       </div>
     </nav>
   </header>
