@@ -4,8 +4,8 @@
 // nuxt.config.ts
 
 export default defineNuxtConfig({
-  buildModules: ['@nuxt/auth-next', '@nuxt/http', '@nuxtjs/vuex',
-  ],
+  buildModules: [ '@nuxt/http', '@nuxtjs/vuex','@nuxt/auth-next'],
+  modules: ['nuxt-swiper'],
   auth: {
     strategies: {
       local: {
@@ -28,7 +28,6 @@ export default defineNuxtConfig({
   http: {
     baseURL: 'http://localhost:3000',
   },
-  modules: ['nuxt-swiper'],
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
   postcss: {

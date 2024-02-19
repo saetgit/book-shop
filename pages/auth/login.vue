@@ -5,7 +5,10 @@
       @submit.prevent="login"
     >
       <div class="mb-4">
-        <div :class="{ error: v$.email.$errors.length }" class="text-[#6d5532] text-sm">
+        <div
+          :class="{ error: v$.email.$errors.length }"
+          class="text-[#6d5532] text-sm pt-2"
+        >
           <label class="block text-[#daa556] text-sm font-bold mb-2" for="email">
             ایمیل
           </label>
@@ -24,7 +27,7 @@
       <div class="mb-6">
         <div
           :class="{ error: v$.password.$errors.length }"
-          class="text-[#6d5532] text-sm"
+          class="text-[#6d5532] text-sm pt-2"
         >
           <label class="block text-[#daa556] text-sm font-bold mb-2" for="password">
             رمزعبور

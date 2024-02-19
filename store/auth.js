@@ -18,7 +18,6 @@ const store = createStore({
   getters: {
     isLoggedIn: (state) => state.loggedIn,
     getUser: (state) => state.user,
-    console.log("ssss");
   },
 });
 

@@ -5,6 +5,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-10 my-5">
       <BooksBook v-for="book in booksData.slice(0, 4)" :key="book.id" :book="book" />
     </div>
+    <div><SectionLogo/></div>
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="" dir="rtl">
-    <NavBar />
-    <div>
+    <NavBar class="fixed w-full top-0 z-50" />
+    <div class="mt-[100px]">
       <slot />
     </div>
     <Footer />
@@ -9,6 +9,5 @@
 </template>
 
 <script setup>
-import NavBar from "~/components/NavBar.vue";
-import Footer from "~/components/Footer.vue";
+
 </script>

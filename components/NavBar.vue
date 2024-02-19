@@ -1,4 +1,7 @@
 <script setup>
+// definePageMeta({
+//   middleware:"auth"
+// })
 import { ref } from "vue";
 
 const activeItem = ref(null);
@@ -48,7 +51,7 @@ const handleItemClick = (index) => {
           </ul>
         </div>
         <div>
-          <div><span>خروج</span></div>
+          <div @click="handleLogout"><span>خروج</span></div>
         </div>
       </div>
     </nav>
