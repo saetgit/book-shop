@@ -36,4 +36,11 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  routes: [
+    {
+      path: '/books/:id',
+      name: 'books-id',
+      component: '~/pages/books/_id.vue',
+    },
+  ],
 });
