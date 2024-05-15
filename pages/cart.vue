@@ -1,37 +1,80 @@
 <template>
-  <div>
-    <h1>سبد خرید</h1>
-    <div v-if="cartItems.length === 0">
-      <p>سبد خرید شما خالی است.</p>
-    </div>
-    <div v-else>
-      <div v-for="(item, index) in cartItems" :key="index">
-        <p>
-          {{ item.title }} - تعداد: {{ item.quantity }} - قیمت: ${{
-            item.price.toFixed(2)
-          }}
-        </p>
+  <div class="row my-4">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in data.getCartItems" :key="item.id">
+                <td>{{ item.id }}</td>
+                <td>
+                  <img
+                    :src="item.picture"
+                    class="fluid rounded"
+                    width="60"
+                    height="60"
+                    :alt="item.name"
+                  />
+                </td>
+                <td>
+                  {{ item.name }}
+                </td>
+                <td>
+                  <i @click="data.incrementQ(item)" class="bi bi-caret-up"></i>
+                  <span class="mx-2">
+                    {{ item.quantity }}
+                  </span>
+                  <i @click="data.decrementQ(item)" class="bi bi-caret-down"></i>
+                </td>
+                <td>${{ item.price }}</td>
+                <td>${{ item.price * item.quantity }}</td>
+                <td>
+                  <i
+                    @click="data.removeFromCart(item)"
+                    class="bi bi-cart-x text-danger"
+                  ></i>
+                </td>
+              </tr>
+              <tr>
+                <th colSpan="3" class="text-center">Total</th>
+                <td colSpan="3" class="text-center">
+                  <span class="badge bg-danger rounded-pill">
+                    ${{
+                      data.cartItems.reduce(
+                        (acc, item) => (acc += item.price * item.quantity),
+                        0
+                      )
+                    }}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <p>تعداد کل: {{ totalQuantity }}</p>
-      <p>جمع کل: ${{ totalPrice.toFixed(2) }}</p>
-      <button @click="checkout">ثبت نهایی</button>
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed } from "vue";
-import { useStore } from "vuex";
-
-const store = useStore();
-const cartItems = computed(() => store.state.cart.cartItems);
-const totalQuantity = computed(() => {
-  return cartItems.value.reduce((total, item) => total + item.quantity, 0);
-});
-const totalPrice = computed(() => {
-  return cartItems.value.reduce((total, item) => total + item.price * item.quantity, 0);
-});
-const checkout = () => {
-  // اینجا کد برای ثبت نهایی سفارش را قرار دهید
-};
+import { useShoppingStore } from "../stores";
+//get store
+const data = useShoppingStore();
 </script>
+
+<style>
+i {
+  cursor: pointer;
+}
+</style>

@@ -1,6 +1,4 @@
 
-
-
 // nuxt.config.ts
 
 export default defineNuxtConfig({
@@ -26,9 +24,9 @@ export default defineNuxtConfig({
   //     },
   //   },
   // },
-  http: {
-    baseURL: 'http://localhost:3000',
-  },
+  // http: {
+  //   baseURL: 'http://localhost:3000',
+  // },
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
   postcss: {
@@ -37,11 +35,11 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  routes: [
-    {
-      path: '/books/:id',
-      name: 'books-id',
-      component: '~/pages/books/_id.vue',
-    },
-  ],
+  // routes: [
+  //   {
+  //     path: '/books/:id',
+  //     name: 'books-id',
+  //     component: '~/pages/books/_id.vue',
+  //   },
+  // ],
 });

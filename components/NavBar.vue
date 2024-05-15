@@ -2,6 +2,9 @@
 // definePageMeta({
 //   middleware:"auth"
 // })
+import { useShoppingStore } from "../stores";
+//get store
+const data = useShoppingStore();
 import { ref } from "vue";
 
 const activeItem = ref(null);
@@ -48,6 +51,9 @@ const handleItemClick = (index) => {
             >
               <router-link :to="item.url">{{ item.name }}</router-link>
             </li>
+            <router-link :to="'/cart'">
+              <li>سبد خرید{{ data.countCartItems }}</li>
+            </router-link>
           </ul>
         </div>
         <div>

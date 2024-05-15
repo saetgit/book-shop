@@ -11,7 +11,7 @@
           v-show="showButton"
           type="button"
           class="add-to-cart absolute bottom-0 left-1/2 transform -translate-x-1/2 bg-black text-white w-[200px] h-10"
-          @click="addToCart"
+          @click="data.addToCart(book)"
         >
           افزودن به سبد خرید
         </button>
@@ -32,7 +32,8 @@
 
 <script setup>
 import { ref } from "vue";
-import { useStore } from "vuex";
+import { useShoppingStore } from "../stores";
+const data = useShoppingStore();
 
 const props = defineProps({
   book: {
@@ -41,13 +42,12 @@ const props = defineProps({
   },
 });
 
-const store = useStore();
 const showButton = ref(false);
 
-const addToCart = () => {
-  store.commit("addToCart", props.book);
-  alert("hhhhhhhhhhhhhh");
-};
+// const addToCart = () => {
+//   store.commit("addToCart", props.book);
+//   alert("hhhhhhhhhhhhhh");
+// };
 </script>
 
 <style scoped>

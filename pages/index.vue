@@ -13,6 +13,8 @@
 
 <script setup>
 import axios from "axios";
+import { useShoppingStore } from "../stores";
+const data = useShoppingStore();
 const booksData = ref([]);
 const bestSeller = ref({});
 
