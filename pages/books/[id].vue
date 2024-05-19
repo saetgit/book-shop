@@ -32,6 +32,7 @@
       <button
         class="bg-[#ac864d] hover:bg-[#daa556] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         type="submit"
+        @click="data.addToCart(book)"
       >
         خرید
       </button>
@@ -42,7 +43,8 @@
 
 <script setup>
 import axios from "axios";
-
+import { useShoppingStore } from "../stores";
+const data = useShoppingStore();
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 

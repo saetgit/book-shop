@@ -23,11 +23,14 @@
         <div class="block items-center">
           <div class="text-[40px] mb-4 text-[#222]">{{ slide.title }}</div>
           <div class="w-[400px] text-justify text-[#7f7974]">{{ slide.description }}</div>
-          <div
+
+          <button
+            type="button"
             class="w-[100px] text-[#c2a67f] border-2 border-[#c2a67f] text-center rounded-lg py-2 font-semibold mt-4 hover:bg-[#daa556] hover:text-white hover:cursor-pointer"
+            @click="data.addToCart(slide)"
           >
-            <a href="#" class="">خرید </a>
-          </div>
+            خرید
+          </button>
         </div>
       </div>
     </SwiperSlide>
@@ -37,7 +40,8 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import axios from "axios";
-
+import { useShoppingStore } from "../stores";
+const data = useShoppingStore();
 const slides = ref([]);
 
 onMounted(async () => {

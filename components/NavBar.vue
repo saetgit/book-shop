@@ -51,8 +51,10 @@ const handleItemClick = (index) => {
             >
               <router-link :to="item.url">{{ item.name }}</router-link>
             </li>
-            <router-link :to="'/cart'">
-              <li>سبد خرید{{ data.countCartItems }}</li>
+            <router-link :to="'/cart'" class="flex">
+              <img src="/static/icons/bag.svg" class="h-5 w-5" alt="bag" />{{
+                data.countCartItems
+              }}
             </router-link>
           </ul>
         </div>

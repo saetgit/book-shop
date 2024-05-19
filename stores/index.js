@@ -15,17 +15,6 @@ export const useShoppingStore = defineStore('cart', {
     }
   },
   actions: {
-    // addToCart(item) {
-    //   let index = this.cartItems.findIndex(product => product.id === item.id);
-    //   if (index !== -1) {
-    //     this.products[index].quantity += 1;
-    //     alert("addtocart")
-    //   } else {
-    //     item.quantity = 1;
-    //     this.cartItems.push(item);
-    //     alert("update")
-    //   }
-    // },
     addToCart(item) {
       // Check if the item exists in the products array
       let productExists = this.products.some(product => product.id === item.id);
@@ -37,12 +26,12 @@ export const useShoppingStore = defineStore('cart', {
       let index = this.cartItems.findIndex(product => product.id === item.id);
       if (index !== -1) {
         this.cartItems[index].quantity += 1;
-        alert("addtocart")
+        console.log("addtocart");
       } else {
         if (item) {
           item.quantity = 1;
           this.cartItems.push(item);
-          alert("update")
+          console.log("update");
         } else {
           console.error('Item is undefined');
         }
@@ -52,7 +41,7 @@ export const useShoppingStore = defineStore('cart', {
       let index = this.cartItems.findIndex(product => product.id === item.id);
       if (index !== -1) {
         this.cartItems[index].quantity += 1;
-        alert("+add")
+        console.log("add");
       }
     },
     decrementQ(item) {
@@ -63,12 +52,12 @@ export const useShoppingStore = defineStore('cart', {
           this.cartItems = this.cartItems.filter(product => product.id !== item.id);
         }
 
-        alert("-remove")
+        console.log("remove");
       }
     },
     removeFromCart(item) {
       this.cartItems = this.cartItems.filter(product => product.id !== item.id);
-      alert("remove")
+      console.log("remove");
     }
 
   },

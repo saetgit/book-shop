@@ -10,7 +10,11 @@
         <div class="text-[#c2a67f] mt-5" v-if="book.price !== undefined">
           قیمت: $ {{ book.price.toFixed(2) }}
         </div>
-        <button type="button" class="bg-[#daa556] text-white w-[200px] h-10">
+        <button
+          type="button"
+          class="bg-[#daa556] text-white w-[200px] h-10"
+          @click="data.addToCart(book)"
+        >
           افزودن به سبد خرید
         </button>
       </div>
@@ -19,5 +23,7 @@
 </template>
 
 <script setup>
+import { useShoppingStore } from "../stores";
+const data = useShoppingStore();
 const props = defineProps(["book"]);
 </script>

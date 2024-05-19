@@ -16,9 +16,9 @@
         <tr v-for="item in data.getCartItems" :key="item.id" class="border-b">
           <td class="py-2 text-center">{{ item.id }}</td>
           <td class="py-2 text-center">
-            <img :src="item.picture" class="fluid rounded w-14 h-14" :alt="item.name" />
+            <img :src="item.picture" class="fluid rounded w-14 h-14" :alt="item.title" />
           </td>
-          <td class="py-2 text-center">{{ item.name }}</td>
+          <td class="py-2 text-center">{{ item.title }}</td>
           <td class="py-2 text-center">
             <button
               @click="data.incrementQ(item)"
@@ -36,10 +36,11 @@
           </td>
           <td class="py-2 text-center">${{ item.price }}</td>
           <td class="py-2 text-center">
-            <i
-              @click="data.removeFromCart(item)"
+            <span
               class="bi bi-cart-x text-red-500 cursor-pointer"
-            ></i>
+              @click="data.removeFromCart(item)"
+              >x</span
+            >
           </td>
           <td class="py-2 text-center">${{ item.price * item.quantity }}</td>
         </tr>
