@@ -10,10 +10,11 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxtjs/auth-next": "5.0.0-1667386184.dfbbb54",
+    "@nuxtjs/auth-next": "^5.0.0-1667386184.dfbbb54",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/toast": "^3.3.1",
     "@pinia/nuxt": "^0.5.1",
+    "@sidebase/nuxt-auth": "^0.7.2",
     "@vee-validate/nuxt": "^4.12.5",
     "@vee-validate/rules": "^4.12.5",
     "@vuelidate/core": "^2.0.3",

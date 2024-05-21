@@ -1,4 +1,10 @@
 {
-  // https://nuxt.com/docs/guide/concepts/typescript
-  "extends": "./.nuxt/tsconfig.json"
+  "extends": "./.nuxt/tsconfig.json",
+  // "compilerOptions": {
+  //   "types": [
+  //     "@nuxt/types",
+  //     "@sidebase/nuxt-auth" // Ensure you have installed the types for sidebase/nuxt-auth
+  //   ],
+  //   // You can add more compiler options here as per your project's requirements
+  // }
 }
