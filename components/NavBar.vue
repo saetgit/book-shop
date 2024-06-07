@@ -6,7 +6,12 @@ import { useShoppingStore } from "../stores";
 //get store
 const data = useShoppingStore();
 import { ref } from "vue";
-
+import { useRouter } from "vue-router";
+const router = useRouter();
+const logOut = () => {
+  localStorage.clear();
+  router.push("/auth/login");
+};
 const activeItem = ref(null);
 const menuItems = ref([
   { name: "خانه", url: "/" },
@@ -59,7 +64,7 @@ const handleItemClick = (index) => {
           </ul>
         </div>
         <div>
-          <div @click="handleLogout"><span>خروج</span></div>
+          <div @click="logOut"><span>خروج</span></div>
         </div>
       </div>
     </nav>

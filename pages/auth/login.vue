@@ -29,24 +29,37 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useAuth } from "@nuxtjs/auth-next";
+import { reactive, onMounted } from "vue";
+import axios from "axios";
 import { useRouter } from "vue-router";
+const router = useRouter();
 
-const form = ref({
+const form = reactive({
   email: "",
   password: "",
 });
 
-const { login } = useAuth();
-const router = useRouter();
-
-const onSubmit = async () => {
-  try {
-    await login("local", { data: form.value });
+const login = async () => {
+  let result = await axios.get(
+    `http://localhost:8000/users?email=${form.email}&password=${form.password}`
+  );
+  if (result.status == 200 && result.data.length > 0) {
+    localStorage.setItem("user-info", JSON.stringify(result.data[0]));
+    alert("اضافه شد");
     router.push("/");
-  } catch (error) {
-    console.error(error);
   }
 };
+onMounted(() => {
+  let user = localStorage.getItem("user-info");
+  if (user) {
+    router.push("/");
+  }
+});
+
+const onSubmit = (event) => {
+  event.preventDefault();
+  login();
+};
+
+// "https://book-shop-api.hosseinbajan.ir/api/v1/users/register",
 </script>

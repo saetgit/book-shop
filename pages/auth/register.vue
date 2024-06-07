@@ -115,13 +115,11 @@ const router = useRouter();
 
 const register = async () => {
   try {
-    const res = await axios.post(
-      "https://book-shop-api.hosseinbajan.ir/api/v1/users/register",
-      form.value
-    );
-    if (res.data.success) {
+    const res = await axios.post("http://localhost:8000/users", form.value);
+    if (res.status == 201) {
+      localStorage.setItem("user-info", JSON.stringify(res.data));
       alert("اضافه شد");
-      // router.push("/user/list");
+      router.push("/");
     } else {
       alert("خطا در سمت سرور");
     }
@@ -142,4 +140,6 @@ const onReset = (event) => {
     show.value = true;
   });
 };
+
+// "https://book-shop-api.hosseinbajan.ir/api/v1/users/register",
 </script>
