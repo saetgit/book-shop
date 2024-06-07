@@ -121,7 +121,7 @@ const register = async () => {
       alert("اضافه شد");
       router.push("/");
     } else {
-      alert("خطا در سمت سرور");
+      alert(" اطلاعات ذخیره تشد  ");
     }
   } catch (error) {
     alert("خطا در سمت سرور");

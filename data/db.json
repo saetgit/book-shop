@@ -1,45 +1,6 @@
 {
   "users": [
     {
-      "id": "c868",
-      "name": "سارا",
-      "family": "اعتمادیان",
-      "email": "e@gmail.com",
-      "username": "ee",
-      "password": "123456",
-      "mobile": "02356",
-      "age": "33",
-      "website": "333",
-      "sex": "333"
-    },
-    {
-      "id": "a341",
-      "name": "w",
-      "family": "w",
-      "email": "w",
-      "username": "w",
-      "password": "w",
-      "mobile": "w",
-      "age": "w",
-      "website": "w",
-      "sex": "w"
-    },
-    {
-      "id": "8d02"
-    },
-    {
-      "id": "8f19",
-      "name": "q",
-      "family": "qq",
-      "email": "qq",
-      "username": "qq",
-      "password": "qq",
-      "mobile": "qq",
-      "age": "qqq",
-      "website": "qqq",
-      "sex": "qq"
-    },
-    {
       "id": "0dd2",
       "name": "n",
       "family": "n",
