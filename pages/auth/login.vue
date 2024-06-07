@@ -3,9 +3,8 @@
     <form
       class="bg-[#EFEEE8] shadow-md rounded px-8 pt-6 pb-8 mb-4 w-96"
       @submit.prevent="onSubmit"
-      @reset="onReset"
     >
-      صفحه ورود
+      <div class="text-center text-xl font-bold mb-4">صفحه ورود</div>
       <div class="mb-4">
         <div :class="{ error: v$.email.$errors.length }" class="text-[#6d5532] text-sm">
           <label class="block text-[#daa556] text-sm font-bold mb-2" for="email">
@@ -19,7 +18,7 @@
             placeholder="ایمیل"
           />
           <div class="input-errors" v-for="error of v$.email.$errors" :key="error.$uid">
-            <div class="error-msg mt-2">{{ rules.email.$message }}</div>
+            <div class="error-msg mt-2">{{ error.$message }}</div>
           </div>
         </div>
       </div>
@@ -35,7 +34,6 @@
             v-model="form.password"
             class="shadow appearance-none border rounded w-full py-2 px-3 bg-[#f5f4ef] text-[#777] leading-tight focus:outline-none focus:shadow-outline"
             id="password"
-            :class="{ error: v$.password.$errors.length }"
             type="password"
             placeholder="رمزعبور"
           />
@@ -44,7 +42,7 @@
             v-for="error of v$.password.$errors"
             :key="error.$uid"
           >
-            <div class="error-msg mt-2">{{ rules.password.$message }}</div>
+            <div class="error-msg mt-2">{{ error.$message }}</div>
           </div>
         </div>
       </div>
@@ -66,6 +64,7 @@ import axios from "axios";
 import { useRouter } from "vue-router";
 import { useVuelidate } from "@vuelidate/core";
 import { required, email, minLength } from "@vuelidate/validators";
+
 const router = useRouter();
 
 const form = reactive({
@@ -75,44 +74,48 @@ const form = reactive({
 
 const login = async () => {
   v$.value.$touch();
+  if (v$.value.$invalid) {
+    return;
+  }
 
-  let result = await axios.get(
-    `http://localhost:8000/users?email=${form.email}&password=${form.password}`
-  );
-  if (result.status == 200 && result.data.length > 0) {
-    localStorage.setItem("user-info", JSON.stringify(result.data[0]));
-    alert("اضافه شد");
-    router.push("/");
+  try {
+    const result = await axios.get(`http://localhost:8000/users`, {
+      params: {
+        email: form.email,
+        password: form.password,
+      },
+    });
+    if (result.status === 200 && result.data.length > 0) {
+      localStorage.setItem("user-info", JSON.stringify(result.data[0]));
+      alert("ورود موفقیت‌آمیز بود");
+      router.push("/");
+    } else {
+      alert("نام کاربری یا رمزعبور اشتباه است");
+    }
+  } catch (error) {
+    alert("خطایی رخ داد: " + error.message);
   }
 };
+
 onMounted(() => {
-  let user = localStorage.getItem("user-info");
+  const user = localStorage.getItem("user-info");
   if (user) {
     router.push("/");
   }
 });
 
-const onSubmit = (event) => {
-  event.preventDefault();
+const onSubmit = () => {
   login();
 };
-const rules = computed(() => {
-  return {
-    email: { required, email, $message: "لطفاً یک ایمیل معتبر وارد کنید." },
-    password: {
-      required,
-      minLength: minLength(6),
-      $message: "رمزعبور باید حداقل ۶ کاراکتر داشته باشد.",
-    },
-  };
-});
-const v$ = useVuelidate(rules, form);
 
-const onReset = (event) => {
-  event.preventDefault();
-  show.value = false;
-  nextTick(() => {
-    show.value = true;
-  });
-};
+const rules = computed(() => ({
+  email: { required, email, $message: "لطفاً یک ایمیل معتبر وارد کنید." },
+  password: {
+    required,
+    minLength: minLength(6),
+    $message: "رمزعبور باید حداقل ۶ کاراکتر داشته باشد.",
+  },
+}));
+
+const v$ = useVuelidate(rules, form);
 </script>
