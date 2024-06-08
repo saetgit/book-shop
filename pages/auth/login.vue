@@ -2,7 +2,7 @@
   <div class="min-h-screen flex items-center justify-center">
     <form
       class="bg-[#EFEEE8] shadow-md rounded px-8 pt-6 pb-8 mb-4 w-96"
-      @submit.prevent="onSubmit"
+      @submit.prevent="login"
     >
       <div class="text-center text-xl font-bold mb-4">صفحه ورود</div>
       <div class="mb-4">
@@ -74,27 +74,30 @@ const form = reactive({
 
 const login = async () => {
   v$.value.$touch();
-  if (v$.value.$invalid) {
-    return;
-  }
-
   try {
-    const result = await axios.get(`http://localhost:8000/users`, {
-      params: {
-        email: form.email,
-        password: form.password,
-      },
-    });
-    if (result.status === 200 && result.data.length > 0) {
+    console.log("Logging in...");
+
+    const result = await axios.get(
+      `http://localhost:8000/users?email=${form.email}&password=${form.password}`
+    );
+    if (result.status == 200 && result.data.length > 0) {
       localStorage.setItem("user-info", JSON.stringify(result.data[0]));
-      alert("ورود موفقیت‌آمیز بود");
       router.push("/");
+      console.log("Login successful!");
     } else {
-      alert("نام کاربری یا رمزعبور اشتباه است");
+      console.error("Login failed:", result);
     }
   } catch (error) {
-    alert("خطایی رخ داد: " + error.message);
+    console.error("Login failed:", error);
   }
+
+  // if (result.status === 200 && result.data.length > 0) {
+  //   localStorage.setItem("user-info", JSON.stringify(result.data[0]));
+  //   alert("ورود موفقیت‌آمیز بود");
+  //   router.push("/");
+  // } else {
+  //   alert("نام کاربری یا رمزعبور اشتباه است");
+  // }
 };
 
 onMounted(() => {
@@ -104,18 +107,15 @@ onMounted(() => {
   }
 });
 
-const onSubmit = () => {
-  login();
-};
-
-const rules = computed(() => ({
-  email: { required, email, $message: "لطفاً یک ایمیل معتبر وارد کنید." },
-  password: {
-    required,
-    minLength: minLength(6),
-    $message: "رمزعبور باید حداقل ۶ کاراکتر داشته باشد.",
-  },
-}));
-
+const rules = computed(() => {
+  return {
+    email: { required, email, $message: "لطفاً یک ایمیل معتبر وارد کنید." },
+    password: {
+      required,
+      minLength: minLength(6),
+      $message: "رمزعبور باید حداقل ۶ کاراکتر داشته باشد.",
+    },
+  };
+});
 const v$ = useVuelidate(rules, form);
 </script>

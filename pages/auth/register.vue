@@ -1,94 +1,123 @@
 <template>
-  <div class="container mx-auto">
-    <form v-if="show" @submit.prevent="onSubmit" @reset="onReset">
-      <div class="flex flex-col w-full lg:w-1/2">
-        <div class="mb-4">
-          <label for="name" class="block text-gray-700">نام</label>
-          <input
-            id="name"
-            v-model="form.name"
-            type="text"
-            required
-            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-          />
-        </div>
-        <div class="mb-4">
-          <label for="family" class="block text-gray-700">نام خانوادگی</label>
-          <input
-            id="family"
-            v-model="form.family"
-            type="text"
-            required
-            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-          />
-        </div>
-        <div class="mb-4">
-          <label for="email" class="block text-gray-700">ایمیل</label>
-          <input
-            id="email"
-            v-model="form.email"
-            type="text"
-            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-          />
-        </div>
-        <div class="mb-4">
-          <label for="username" class="block text-gray-700">نام کاربری</label>
-          <input
-            id="username"
-            v-model="form.username"
-            type="text"
-            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-          />
-        </div>
-        <div class="mb-4">
-          <label for="password" class="block text-gray-700">رمزعبور</label>
-          <input
-            id="password"
-            v-model="form.password"
-            type="text"
-            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-          />
-        </div>
-        <div class="mb-4">
-          <label for="mobile" class="block text-gray-700">موبایل</label>
-          <input
-            id="mobile"
-            v-model="form.mobile"
-            type="text"
-            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-          />
-        </div>
-        <div class="mb-4">
-          <label for="age" class="block text-gray-700">سن</label>
-          <input
-            id="age"
-            v-model="form.age"
-            type="text"
-            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-          />
-        </div>
-        <div class="mb-4">
-          <label for="website" class="block text-gray-700">وب سایت</label>
-          <input
-            id="website"
-            v-model="form.website"
-            type="text"
-            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-          />
-        </div>
-        <div class="mb-4">
-          <label for="sex" class="block text-gray-700">جنسیت</label>
-          <input
-            id="sex"
-            v-model="form.sex"
-            type="text"
-            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"
-          />
-        </div>
-        <button type="submit" class="py-2 px-4 bg-blue-500 text-white rounded">
-          ثبت نام
-        </button>
+  <div class="min-h-screen flex items-center justify-center">
+    <form
+      class="bg-[#EFEEE8] shadow-md rounded px-8 pt-6 pb-8 mb-4 w-96"
+      @submit.prevent="onSubmit"
+      @reset="onReset"
+    >
+      <div class="text-center text-xl font-bold mb-4">صفحه ثبت نام</div>
+      <div class="mb-4">
+        <label class="block text-[#daa556] text-sm font-bold mb-2" for="name">
+          نام
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 bg-[#f5f4ef] text-[#777] leading-tight focus:outline-none focus:shadow-outline"
+          id="name"
+          type="text"
+          v-model="form.name"
+          placeholder="نام"
+        />
       </div>
+      <div class="mb-4">
+        <label class="block text-[#daa556] text-sm font-bold mb-2" for="family">
+          نام خانوادگی
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 bg-[#f5f4ef] text-[#777] leading-tight focus:outline-none focus:shadow-outline"
+          id="family"
+          type="text"
+          v-model="form.family"
+          placeholder="نام خانوادگی"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-[#daa556] text-sm font-bold mb-2" for="email">
+          ایمیل
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 bg-[#f5f4ef] text-[#777] leading-tight focus:outline-none focus:shadow-outline"
+          id="email"
+          type="text"
+          v-model="form.email"
+          placeholder="ایمیل"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-[#daa556] text-sm font-bold mb-2" for="username">
+          نام کاربری
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 bg-[#f5f4ef] text-[#777] leading-tight focus:outline-none focus:shadow-outline"
+          id="username"
+          type="text"
+          v-model="form.username"
+          placeholder="نام کاربری"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-[#daa556] text-sm font-bold mb-2" for="password">
+          رمزعبور
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 bg-[#f5f4ef] text-[#777] leading-tight focus:outline-none focus:shadow-outline"
+          id="password"
+          type="text"
+          v-model="form.password"
+          placeholder="رمزعبور"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-[#daa556] text-sm font-bold mb-2" for="mobile">
+          موبایل
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 bg-[#f5f4ef] text-[#777] leading-tight focus:outline-none focus:shadow-outline"
+          id="mobile"
+          type="text"
+          v-model="form.mobile"
+          placeholder="موبایل"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-[#daa556] text-sm font-bold mb-2" for="age"> سن </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 bg-[#f5f4ef] text-[#777] leading-tight focus:outline-none focus:shadow-outline"
+          id="age"
+          type="text"
+          v-model="form.age"
+          placeholder="سن"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-[#daa556] text-sm font-bold mb-2" for="website">
+          وب سایت
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 bg-[#f5f4ef] text-[#777] leading-tight focus:outline-none focus:shadow-outline"
+          id="website"
+          type="text"
+          v-model="form.website"
+          placeholder="وب سایت"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-[#daa556] text-sm font-bold mb-2" for="sex">
+          جنسیت
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 bg-[#f5f4ef] text-[#777] leading-tight focus:outline-none focus:shadow-outline"
+          id="sex"
+          type="text"
+          v-model="form.sex"
+          placeholder="جنسیت"
+        />
+      </div>
+      <button
+        type="submit"
+        class="bg-[#c2a67f] hover:bg-[#daa556] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      >
+        ثبت نام
+      </button>
     </form>
   </div>
 </template>
