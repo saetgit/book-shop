@@ -16,9 +16,10 @@
             type="text"
             v-model="form.email"
             placeholder="ایمیل"
+            required
           />
           <div class="input-errors" v-for="error of v$.email.$errors" :key="error.$uid">
-            <div class="error-msg mt-2">{{ error.$message }}</div>
+            <div class="error-msg mt-2">{{ rules.email.$message }}</div>
           </div>
         </div>
       </div>
@@ -35,14 +36,15 @@
             class="shadow appearance-none border rounded w-full py-2 px-3 bg-[#f5f4ef] text-[#777] leading-tight focus:outline-none focus:shadow-outline"
             id="password"
             type="password"
-            placeholder="رمزعبور"
+            placeholder="رمزعبور را وارد کنید"
+            required
           />
           <div
             class="input-errors"
             v-for="error of v$.password.$errors"
             :key="error.$uid"
           >
-            <div class="error-msg mt-2">{{ error.$message }}</div>
+            <div class="error-msg mt-2">{{ rules.password.$message }}</div>
           </div>
         </div>
       </div>
