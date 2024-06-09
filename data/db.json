@@ -1,6 +1,5 @@
 {
   "users": [
-
     {
       "id": "70ab",
       "name": "t",
@@ -36,6 +35,180 @@
       "age": "",
       "website": "",
       "sex": ""
+    }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "title": "جستجوی زمان از دست رفته",
+      "author": "میترا کمالی",
+      "description": "داستانی جذاب از ماجراهای یک جوان در جستجوی زمان گم‌شده.",
+      "price": 25.99,
+      "picture": "images/books/product-item1.jpg",
+      "category": "علمی",
+      "sales": 100
+    },
+    {
+      "id": 2,
+      "title": "سایه‌های گذرناپذیر",
+      "author": "علی احمدی",
+      "description": "یک رمان تاریخی مهیج دربارهٔ ماجراهای یک قهرمان در دوران گذرناپذیر.",
+      "price": 29.95,
+      "picture": "images/books/product-item2.jpg",
+      "category": "تاریخی",
+      "sales": 490
+    },
+    {
+      "id": 3,
+      "title": "پنجره به زمان گذشته",
+      "author": "فاطمه محمدی",
+      "description": "داستانی دلنشین از یک دختر جوان که با یک پنجره جادویی به زمان گذشته سفر می‌کند.",
+      "price": 20.5,
+      "picture": "images/books/product-item3.jpg",
+      "category": "رمان",
+      "sales": 7000
+    },
+    {
+      "id": 4,
+      "title": "سرزمین آرامش",
+      "author": "حسین علیزاده",
+      "description": "داستانی ادبی در مورد سفر یک شخص به سرزمینی پر از آرامش و صلح.",
+      "price": 35.75,
+      "picture": "images/books/product-item4.jpg",
+      "category": "علمی",
+      "sales": 300
+    },
+    {
+      "id": 5,
+      "title": "گمشده در جنگل",
+      "author": "سارا مقدم",
+      "description": "ماجراهای یک کودک گم‌شده در جنگل و دوستی با حیوانات وحشی.",
+      "price": 18.99,
+      "picture": "images/books/product-item5.jpg",
+      "category": "رمان",
+      "sales": 1000
+    },
+    {
+      "id": 6,
+      "title": "آتش و یخ",
+      "author": "امیر علیزاده",
+      "description": "داستانی اپیک در مورد جنگ افسانه‌ای بین آتش و یخ.",
+      "price": 27.5,
+      "picture": "images/books/product-item6.jpg",
+      "category": "تاریخی",
+      "sales": 300
+    },
+    {
+      "id": 7,
+      "title": "خاطرات یک خواننده",
+      "author": "نازنین فراهانی",
+      "description": "زندگی و خاطرات یک خواننده معروف در دنیای موسیقی.",
+      "price": 24.8,
+      "picture": "images/books/product-item7.jpg",
+      "category": "رمان",
+      "sales": 560
+    },
+    {
+      "id": 8,
+      "title": "روزهای بهاری",
+      "author": "پریسا محمدی",
+      "description": "داستانی عاشقانه و دلنشین از روابط در روزهای بهاری.",
+      "price": 22.99,
+      "picture": "images/books/product-item8.jpg",
+      "category": "رمان",
+      "sales": 400
+    },
+    {
+      "id": 9,
+      "title": "آسمان شهر",
+      "author": "حسین میرزایی",
+      "description": "داستان یک ماجراجویی در آسمان شهر و جستجوی یک گنج مفقود شده.",
+      "price": 31.25,
+      "picture": "images/books/product-item9.jpg",
+      "category": "علمی",
+      "sales": 30
+    },
+    {
+      "id": 10,
+      "title": "شبی درون",
+      "author": "زهرا علیزاده",
+      "description": "داستانی ادبی در مورد یک شب مهیج و ماجراهایی درونی.",
+      "price": 19.9,
+      "picture": "images/books/product-item10.jpg",
+      "category": "علمی",
+      "sales": 100
+    },
+    {
+      "id": 11,
+      "title": "گنجینه افسانه‌ها",
+      "author": "محمدرضا رهنما",
+      "description": "یک مجموعه از آثار شاهکار ادبی و افسانه‌های معروف.",
+      "price": 40.0,
+      "picture": "images/books/product-item11.jpg",
+      "category": "ادبیات",
+      "sales": 150
+    },
+    {
+      "id": 12,
+      "title": "آواز پرندگان",
+      "author": "لیلا رستمی",
+      "description": "داستانی زیبا از دوستی و همدلی پرندگان در یک جزیره سرسبز.",
+      "price": 21.5,
+      "picture": "images/books/product-item12.jpg",
+      "category": "کودکان",
+      "sales": 80
+    },
+    {
+      "id": 13,
+      "title": "رازهای علم",
+      "author": "علی میرزایی",
+      "description": "آشنایی با رازهای جذاب علم و فناوری در دنیای مدرن.",
+      "price": 29.99,
+      "picture": "images/books/product-item13.jpg",
+      "category": "علمی",
+      "sales": 250
+    },
+    {
+      "id": 14,
+      "title": "باغ اسرارآمیز",
+      "author": "ناهید احمدی",
+      "description": "ماجراهای جالب و اسرارآمیز در باغی جادویی.",
+      "price": 19.95,
+      "picture": "images/books/product-item14.jpg",
+      "category": "رمان",
+      "sales": 120
+    },
+    {
+      "id": 15,
+      "title": "داستان‌های ملهم",
+      "author": "سارا محمدی",
+      "description": "مجموعه داستان‌های کوتاه الهام‌بخش و پرانرژی.",
+      "price": 25.0,
+      "picture": "images/books/product-item15.jpg",
+      "category": "ادبیات",
+      "sales": 180
+    }
+  ],
+  "logo": [
+    {
+      "id": 1,
+      "picture": "images/client-logo/client-image1.png"
+    },
+    {
+      "id": 2,
+      "picture": "images/client-logo/client-image2.png"
+    },
+    {
+      "id": 3,
+      "picture": "images/client-logo/client-image3.png"
+    },
+    {
+      "id": 4,
+      "picture": "images/client-logo/client-image4.png"
+    },
+    {
+      "id": 5,
+      "picture": "images/client-logo/client-image5.png"
     }
   ]
 }

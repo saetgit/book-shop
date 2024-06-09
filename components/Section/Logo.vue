@@ -3,7 +3,7 @@
     <div class="logo-wrap">
       <div class="flex justify-center">
         <a v-for="client in clients" :key="client.id" href="#">
-          <img :src="client.picture" :alt="'client ' + client.id">
+          <img :src="client.picture" :alt="'client ' + client.id" />
         </a>
       </div>
     </div>
@@ -11,16 +11,17 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted } from "vue";
+import axios from "axios";
 
 const clients = ref([]);
 
 onMounted(async () => {
   try {
-    const response = await fetch('logo.json');
-    clients.value = await response.json();
+    const response = await axios.get("http://localhost:8000/logo");
+    clients.value = response.data.logo; // Set only the logo array to clients
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error("Error loading logos:", error);
   }
 });
 </script>

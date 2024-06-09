@@ -41,12 +41,17 @@
 import { ref, onMounted } from "vue";
 import axios from "axios";
 import { useShoppingStore } from "../stores";
+
 const data = useShoppingStore();
 const slides = ref([]);
 
+// فراخوانی تابع getBooks از apiService
+import { getBooks } from "~/api/appService";
+
 onMounted(async () => {
   try {
-    const response = await axios.get("books.json");
+    // فراخوانی تابع getBooks برای دریافت داده‌های کتاب‌ها
+    const response = await getBooks();
     slides.value = response.data;
   } catch (error) {
     console.error("Error loading slides:", error);

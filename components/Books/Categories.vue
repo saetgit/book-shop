@@ -38,12 +38,12 @@ const books = ref([]);
 
 onMounted(async () => {
   try {
-    const response = await axios.get("books.json");
+    const response = await axios.get("http://localhost:8000/books");
     console.log("-----------------", response);
 
     books.value = response.data;
 
-    // استخراج دسته‌بندی‌ها از داده‌های books.json
+    // استخراج دسته‌بندی‌ها از داده‌های ~/data/books.json
     categories.value = Array.from(new Set(books.value.map((book) => book.category)));
   } catch (error) {
     console.error("Error loading books:", error);

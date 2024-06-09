@@ -57,7 +57,7 @@ onMounted(async () => {
   const bookId = itemId;
 
   try {
-    const response = await axios.get("/books.json");
+    const response = await axios.get("http://localhost:8000/books");
     book.value = response.data.find((b) => b.id === parseInt(bookId));
   } catch (error) {
     console.error("Error loading book:", error);

@@ -20,7 +20,7 @@ const bestSeller = ref({});
 
 onMounted(async () => {
   try {
-    const response = await axios.get("books.json");
+    const response = await axios.get("~/data/db.json");
     booksData.value = response.data;
     // یافتن پرفروش‌ترین کتاب
     bestSeller.value = booksData.value.reduce(

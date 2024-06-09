@@ -16,7 +16,6 @@
             type="text"
             v-model="form.email"
             placeholder="ایمیل"
-            required
           />
           <div class="input-errors" v-for="error of v$.email.$errors" :key="error.$uid">
             <div class="error-msg mt-2">{{ rules.email.$message }}</div>
@@ -24,6 +23,7 @@
         </div>
       </div>
       <div class="mb-4">
+        {{ v$.password.$errors }}
         <div
           :class="{ error: v$.password.$errors.length }"
           class="text-[#6d5532] text-sm"
@@ -37,7 +37,6 @@
             id="password"
             type="password"
             placeholder="رمزعبور را وارد کنید"
-            required
           />
           <div
             class="input-errors"
@@ -75,10 +74,16 @@ const form = reactive({
 });
 
 const login = async () => {
-  v$.value.$touch();
+  // v$.value.$touch();
+
   try {
     console.log("Logging in...");
-
+    console.log(unref(v$).$validate());
+    if (v$.value.$error) {
+      // Error
+      return;
+    }
+    // notify user form is invalid
     const result = await axios.get(
       `http://localhost:8000/users?email=${form.email}&password=${form.password}`
     );
@@ -89,6 +94,7 @@ const login = async () => {
     } else {
       console.error("Login failed:", result);
     }
+    return;
   } catch (error) {
     console.error("Login failed:", error);
   }
