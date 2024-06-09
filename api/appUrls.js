@@ -3,4 +3,7 @@ const API_BASE_URL = 'http://localhost:8000';
 
 export const URLs = {
     GET_BOOKS: `${API_BASE_URL}/books`,
+    GET_LOGOS: `${API_BASE_URL}/logo`,
+    GET_USERS: `${API_BASE_URL}/users`,
+
 };

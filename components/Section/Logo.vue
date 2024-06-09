@@ -12,16 +12,16 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import axios from "axios";
-
 const clients = ref([]);
+
+import { getLogos } from "~/api/appService";
 
 onMounted(async () => {
   try {
-    const response = await axios.get("http://localhost:8000/logo");
-    clients.value = response.data.logo; // Set only the logo array to clients
+    const response = await getLogos();
+    clients.value = response.data;
   } catch (error) {
-    console.error("Error loading logos:", error);
+    console.error("Error loading slides:", error);
   }
 });
 </script>

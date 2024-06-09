@@ -39,18 +39,15 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import axios from "axios";
 import { useShoppingStore } from "../stores";
 
 const data = useShoppingStore();
 const slides = ref([]);
 
-// فراخوانی تابع getBooks از apiService
 import { getBooks } from "~/api/appService";
 
 onMounted(async () => {
   try {
-    // فراخوانی تابع getBooks برای دریافت داده‌های کتاب‌ها
     const response = await getBooks();
     slides.value = response.data;
   } catch (error) {
