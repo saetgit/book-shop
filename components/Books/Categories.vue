@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-import axios from "axios";
+import { getBooks } from "~/api/appService";
 
 const categories = ref([]);
 const selectedCategory = ref("علمی");
@@ -38,8 +38,7 @@ const books = ref([]);
 
 onMounted(async () => {
   try {
-    const response = await axios.get("http://localhost:8000/books");
-    console.log("-----------------", response);
+    const response = await getBooks();
 
     books.value = response.data;
 

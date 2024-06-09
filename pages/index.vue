@@ -17,10 +17,11 @@ import { useShoppingStore } from "../stores";
 const data = useShoppingStore();
 const booksData = ref([]);
 const bestSeller = ref({});
+import { getBooks } from "~/api/appService";
 
 onMounted(async () => {
   try {
-    const response = await axios.get("~/data/db.json");
+    const response = await getBooks();
     booksData.value = response.data;
     // یافتن پرفروش‌ترین کتاب
     bestSeller.value = booksData.value.reduce(

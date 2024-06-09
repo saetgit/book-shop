@@ -7,15 +7,6 @@
         <div>
           <p>&copy; 2024 تمام حقوق متعلق به فروشگاه کتاب است</p>
         </div>
-
-        <!-- <div>
-          <ul class="flex space-x-4">
-            <li><a href="#">صفحه اصلی</a></li>
-            <li><a href="#">فروشگاه</a></li>
-            <li><a href="#">درباره ما</a></li>
-            <li><a href="#">تماس با ما</a></li>
-          </ul>
-        </div> -->
       </div>
     </div>
   </footer>
