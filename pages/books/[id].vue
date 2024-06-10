@@ -31,7 +31,6 @@
       </p>
       <button
         class="bg-[#ac864d] hover:bg-[#daa556] text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        type="submit"
         @click="data.addToCart(book)"
       >
         خرید
@@ -42,23 +41,24 @@
 </template>
 
 <script setup>
-import axios from "axios";
-import { useShoppingStore } from "../stores";
-const data = useShoppingStore();
+import { getBooksId } from "~/api/appService";
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
-
 const route = useRoute();
 const itemId = route.params.id;
-
 const book = ref({});
-
+import { useShoppingStore } from "../stores";
+const data = useShoppingStore();
 onMounted(async () => {
-  const bookId = itemId;
-
   try {
-    const response = await axios.get("http://localhost:8000/books");
-    book.value = response.data.find((b) => b.id === parseInt(bookId));
+    const response = await getBooksId(itemId);
+    if (response && response.data) {
+      // Update book value with the response data
+      book.value = response.data;
+      console.log("Book:", book.value);
+    } else {
+      console.error("Invalid response format:", response);
+    }
   } catch (error) {
     console.error("Error loading book:", error);
   }

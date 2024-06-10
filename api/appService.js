@@ -18,3 +18,6 @@ export const getLogos = () => {
     return apiClient.get(URLs.GET_LOGOS);
 };
 
+export const getBooksId = (itemId) => {
+    return apiClient.get(URLs.GET_BOOKSID(itemId));
+};

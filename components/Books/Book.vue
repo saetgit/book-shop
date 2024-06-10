@@ -22,10 +22,12 @@
       <h6 class="text-[#7f7974] mt-3">{{ book.author }}</h6>
       <div class="text-[#c2a67f] mt-5 mb-5">$ {{ book.price.toFixed(2) }}</div>
       <nuxt-link
-        :to="{ name: 'books-id', params: { id: book.id } }"
+        v-if="book && book.id"
+        :to="'/books/' + book.id"
         class="text-sm bg-[#77521f] text-white p-2 rounded-md hover:bg-[#daa556]"
-        >جزئیات</nuxt-link
       >
+        جزئیات
+      </nuxt-link>
     </figcaption>
   </div>
 </template>
@@ -55,6 +57,7 @@ const showButton = ref(false);
 .fade-leave-active {
   transition: opacity 0.5s;
 }
+
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
