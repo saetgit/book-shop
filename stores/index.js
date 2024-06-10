@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia'
 
-// import db from '~/data/books.json'
+import db from '~/data/db.json'
 export const useShoppingStore = defineStore('cart', {
   state: () => ({
-    products: [],
-    cartItems: []  // changed from cartItem to cartItems
+    products: db.books,
+    cartItems: [] 
   }),
 
   getters: {
@@ -17,13 +17,6 @@ export const useShoppingStore = defineStore('cart', {
   },
   actions: {
     addToCart(item) {
-      // Check if the item exists in the products array
-      let productExists = this.products.some(product => product.id === item.id);
-      if (!productExists) {
-        console.error('Item does not exist in products');
-        return;
-      }
-    
       let index = this.cartItems.findIndex(product => product.id === item.id);
       if (index !== -1) {
         this.cartItems[index].quantity += 1;
