@@ -23,7 +23,6 @@
         </div>
       </div>
       <div class="mb-4">
-        {{ v$.password.$errors }}
         <div
           :class="{ error: v$.password.$errors.length }"
           class="text-[#6d5532] text-sm"
