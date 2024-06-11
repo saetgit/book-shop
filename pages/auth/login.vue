@@ -64,7 +64,9 @@ import axios from "axios";
 import { useRouter } from "vue-router";
 import { useVuelidate } from "@vuelidate/core";
 import { required, email, minLength } from "@vuelidate/validators";
-
+import { useShoppingStore } from "../stores";
+//get store
+const data = useShoppingStore();
 const router = useRouter();
 
 const form = reactive({
@@ -90,6 +92,7 @@ const login = async () => {
       localStorage.setItem("user-info", JSON.stringify(result.data[0]));
       router.push("/");
       console.log("Login successful!");
+      data.logIn();
     } else {
       console.error("Login failed:", result);
     }

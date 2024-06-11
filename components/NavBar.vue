@@ -11,6 +11,7 @@ const router = useRouter();
 const logOut = () => {
   localStorage.clear();
   router.push("/auth/login");
+  data.logOut();
 };
 const activeItem = ref(null);
 const menuItems = ref([
@@ -36,6 +37,7 @@ const handleItemClick = (index) => {
 
 <template>
   <header>
+    {{ data.isLoggedIn }}
     <nav>
       <div
         class="max-w-screen-2xl mx-auto flex flex-wrap items-center justify-between py-5 bg-[#f3f2ec] border-b-[1px] border-solid border-[#E0E0E0]"
@@ -63,7 +65,7 @@ const handleItemClick = (index) => {
             </router-link>
           </ul>
         </div>
-        <div>
+        <div v-if="data.isLoggedIn">
           <div @click="logOut"><span>خروج</span></div>
         </div>
       </div>

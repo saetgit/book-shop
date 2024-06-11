@@ -4,7 +4,9 @@ import db from '~/data/db.json'
 export const useShoppingStore = defineStore('cart', {
   state: () => ({
     products: db.books,
-    cartItems: [] 
+    cartItems: [] ,
+    isLoggedIn: false,
+
   }),
 
   getters: {
@@ -52,7 +54,12 @@ export const useShoppingStore = defineStore('cart', {
     removeFromCart(item) {
       this.cartItems = this.cartItems.filter(product => product.id !== item.id);
       console.log("remove");
-    }
-
+    },
+    logIn() {
+      this.isLoggedIn = true;
+    },
+    logOut() {
+      this.isLoggedIn = false;
+    },
   },
 })
