@@ -191,7 +191,7 @@ import { useVuelidate } from "@vuelidate/core";
 import { required, email, minLength } from "@vuelidate/validators";
 import { useUserStore } from "../stores/user";
 //get store
-const data = useUserStore();
+const userStore = useUserStore();
 const form = ref({
   name: "",
   family: "",
@@ -217,10 +217,10 @@ const register = async () => {
     }
     const res = await axios.post("http://localhost:8000/users", form.value);
     if (res.status == 201) {
-      localStorage.setItem("user-info", JSON.stringify(res.data));
+      userStore.logIn(result.data[0]);
       alert("اضافه شد");
       router.push("/");
-      data.logIn();
+      userStore.logIn();
     } else {
       alert(" اطلاعات ذخیره تشد  ");
     }

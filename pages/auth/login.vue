@@ -65,8 +65,7 @@ import { useRouter } from "vue-router";
 import { useVuelidate } from "@vuelidate/core";
 import { required, email, minLength } from "@vuelidate/validators";
 import { useUserStore } from "../stores/user";
-//get store
-const data = useUserStore();
+const userStore = useUserStore();
 const router = useRouter();
 
 const form = reactive({
@@ -89,10 +88,10 @@ const login = async () => {
       `http://localhost:8000/users?email=${form.email}&password=${form.password}`
     );
     if (result.status == 200 && result.data.length > 0) {
-      localStorage.setItem("user-info", JSON.stringify(result.data[0]));
+      userStore.logIn(result.data[0]);
       router.push("/");
       console.log("Login successful!");
-      data.logIn();
+      userStore.logIn();
     } else {
       console.error("Login failed:", result);
     }
@@ -100,14 +99,6 @@ const login = async () => {
   } catch (error) {
     console.error("Login failed:", error);
   }
-
-  // if (result.status === 200 && result.data.length > 0) {
-  //   localStorage.setItem("user-info", JSON.stringify(result.data[0]));
-  //   alert("ورود موفقیت‌آمیز بود");
-  //   router.push("/");
-  // } else {
-  //   alert("نام کاربری یا رمزعبور اشتباه است");
-  // }
 };
 
 onMounted(() => {

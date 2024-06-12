@@ -20,27 +20,31 @@
             >
               <router-link :to="item.url">{{ item.name }}</router-link>
             </li>
-            <router-link :to="'/cart'" class="flex">
-              <img src="/static/icons/bag.svg" class="h-5 w-5" alt="bag" />{{
-                cartStore.countCartItems
-              }}
-            </router-link>
-            <li
-              v-if="!userStore.isLoggedIn"
-              class="px-3 py-5 cursor-pointer hover:text-[#c2a67f]"
-            >
-              <router-link :to="'/auth/login'">ورود</router-link>
-            </li>
-            <li
-              v-if="!userStore.isLoggedIn"
-              class="px-3 py-5 cursor-pointer hover:text-[#c2a67f]"
-            >
-              <router-link :to="'/auth/register'">ثبت نام</router-link>
-            </li>
           </ul>
         </div>
-        <div v-if="userStore.isLoggedIn">
-          <div @click="logOut"><span>خروج</span></div>
+        <div class="flex items-center space-x-4">
+          <div
+            v-if="!userStore.auth.isLoggedIn"
+            class="px-3 py-5 cursor-pointer hover:text-[#c2a67f]"
+          >
+            <router-link :to="'/auth/login'">ورود</router-link>
+          </div>
+          <div
+            v-if="!userStore.auth.isLoggedIn"
+            class="px-3 py-5 cursor-pointer hover:text-[#c2a67f]"
+          >
+            <router-link :to="'/auth/register'">ثبت نام</router-link>
+          </div>
+          <div v-if="userStore.auth.isLoggedIn">
+            <div @click="logOut" class="px-3 py-5 cursor-pointer hover:text-[#c2a67f]">
+              <span>خروج</span>
+            </div>
+          </div>
+          <router-link :to="'/cart'" class="flex">
+            <img src="/static/icons/bag.svg" class="h-5 w-5" alt="bag" />{{
+              cartStore.countCartItems
+            }}
+          </router-link>
         </div>
       </div>
     </nav>
@@ -57,7 +61,6 @@ const cartStore = useShoppingStore();
 const router = useRouter();
 
 const logOut = () => {
-  localStorage.clear();
   router.push("/auth/login");
   userStore.logOut();
 };
