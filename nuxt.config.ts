@@ -2,11 +2,6 @@
 
 export default defineNuxtConfig({
   modules: ["nuxt-swiper", "@pinia/nuxt"],
-  // auth: {
-  //   provider: {
-  //     type: "authjs",
-  //   },
-  // },
   devtools: { enabled: true },
   css: ["~/assets/css/main.css"],
   postcss: {
@@ -15,5 +10,5 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
- 
+  
 });

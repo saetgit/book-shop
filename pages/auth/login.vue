@@ -104,8 +104,6 @@ const login = async () => {
 };
 
 const showError = (message) => {
-  // Use toast or alert to show the error message to the user
-  // For example:
   alert(message);
 };
 const rules = computed(() => {

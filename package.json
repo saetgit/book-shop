@@ -23,6 +23,7 @@
     "json-server": "^1.0.0-beta.1",
     "nuxt": "^3.10.1",
     "nuxt-swiper": "^1.2.2",
+    "pinia-plugin-persistedstate": "^3.2.1",
     "swiper": "^11.0.6",
     "vee-validate": "^4.12.5",
     "vue": "^3.4.15",
