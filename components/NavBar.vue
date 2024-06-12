@@ -2,9 +2,12 @@
 // definePageMeta({
 //   middleware:"auth"
 // })
-import { useShoppingStore } from "../stores";
+import { useUserStore } from "../stores/user";
 //get store
-const data = useShoppingStore();
+const data = useUserStore();
+import { useShoppingStore } from "../stores/cart";
+
+const counter = useShoppingStore();
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
@@ -37,7 +40,6 @@ const handleItemClick = (index) => {
 
 <template>
   <header>
-    {{ data.isLoggedIn }}
     <nav>
       <div
         class="max-w-screen-2xl mx-auto flex flex-wrap items-center justify-between py-5 bg-[#f3f2ec] border-b-[1px] border-solid border-[#E0E0E0]"
@@ -60,7 +62,7 @@ const handleItemClick = (index) => {
             </li>
             <router-link :to="'/cart'" class="flex">
               <img src="/static/icons/bag.svg" class="h-5 w-5" alt="bag" />{{
-                data.countCartItems
+                counter.countCartItems
               }}
             </router-link>
           </ul>

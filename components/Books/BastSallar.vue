@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { useShoppingStore } from "../stores";
+import { useShoppingStore } from "../stores/cart";
 const data = useShoppingStore();
 const props = defineProps(["book"]);
 </script>

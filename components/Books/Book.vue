@@ -34,7 +34,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { useShoppingStore } from "../stores";
+import { useShoppingStore } from "../stores/cart";
 const data = useShoppingStore();
 
 const props = defineProps({

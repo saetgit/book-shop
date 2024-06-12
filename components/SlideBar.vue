@@ -39,7 +39,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { useShoppingStore } from "../stores";
+import { useShoppingStore } from "../stores/cart";
 
 const data = useShoppingStore();
 const slides = ref([]);

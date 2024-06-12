@@ -63,7 +63,7 @@
 </template>
 
 <script setup>
-import { useShoppingStore } from "../stores";
+import { useShoppingStore } from "../stores/cart";
 //get store
 const data = useShoppingStore();
 </script>

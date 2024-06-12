@@ -47,7 +47,7 @@ import { useRoute } from "vue-router";
 const route = useRoute();
 const itemId = route.params.id;
 const book = ref({});
-import { useShoppingStore } from "../stores";
+import { useShoppingStore } from "../stores/cart";
 const data = useShoppingStore();
 onMounted(async () => {
   try {

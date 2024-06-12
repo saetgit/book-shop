@@ -64,9 +64,9 @@ import axios from "axios";
 import { useRouter } from "vue-router";
 import { useVuelidate } from "@vuelidate/core";
 import { required, email, minLength } from "@vuelidate/validators";
-import { useShoppingStore } from "../stores";
+import { useUserStore } from "../stores/user";
 //get store
-const data = useShoppingStore();
+const data = useUserStore();
 const router = useRouter();
 
 const form = reactive({
