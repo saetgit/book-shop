@@ -1,43 +1,3 @@
-<script setup>
-// definePageMeta({
-//   middleware:"auth"
-// })
-import { useUserStore } from "../stores/user";
-//get store
-const data = useUserStore();
-import { useShoppingStore } from "../stores/cart";
-
-const counter = useShoppingStore();
-import { ref } from "vue";
-import { useRouter } from "vue-router";
-const router = useRouter();
-const logOut = () => {
-  localStorage.clear();
-  router.push("/auth/login");
-  data.logOut();
-};
-const activeItem = ref(null);
-const menuItems = ref([
-  { name: "خانه", url: "/" },
-  { name: "درباره ما", url: "/about" },
-  { name: "ارتباط با ما", url: "/contact" },
-  { name: "فروش", url: "/sales" },
-  { name: "ورود", url: "/auth/login" },
-  { name: "ثبت نام", url: "/auth/register" },
-]);
-
-const handleItemClick = (index) => {
-  activeItem.value = index;
-};
-</script>
-
-<style scoped>
-/* Add the styles as needed */
-.active {
-  color: #daa556;
-}
-</style>
-
 <template>
   <header>
     <nav>
@@ -62,15 +22,61 @@ const handleItemClick = (index) => {
             </li>
             <router-link :to="'/cart'" class="flex">
               <img src="/static/icons/bag.svg" class="h-5 w-5" alt="bag" />{{
-                counter.countCartItems
+                cartStore.countCartItems
               }}
             </router-link>
+            <li
+              v-if="!userStore.isLoggedIn"
+              class="px-3 py-5 cursor-pointer hover:text-[#c2a67f]"
+            >
+              <router-link :to="'/auth/login'">ورود</router-link>
+            </li>
+            <li
+              v-if="!userStore.isLoggedIn"
+              class="px-3 py-5 cursor-pointer hover:text-[#c2a67f]"
+            >
+              <router-link :to="'/auth/register'">ثبت نام</router-link>
+            </li>
           </ul>
         </div>
-        <div v-if="data.isLoggedIn">
+        <div v-if="userStore.isLoggedIn">
           <div @click="logOut"><span>خروج</span></div>
         </div>
       </div>
     </nav>
   </header>
 </template>
+<script setup>
+import { useUserStore } from "../stores/user";
+import { useShoppingStore } from "../stores/cart";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+
+const userStore = useUserStore();
+const cartStore = useShoppingStore();
+const router = useRouter();
+
+const logOut = () => {
+  localStorage.clear();
+  router.push("/auth/login");
+  userStore.logOut();
+};
+
+const activeItem = ref(null);
+const menuItems = ref([
+  { name: "خانه", url: "/" },
+  { name: "درباره ما", url: "/about" },
+  { name: "ارتباط با ما", url: "/contact" },
+  { name: "فروش", url: "/sales" },
+]);
+
+const handleItemClick = (index) => {
+  activeItem.value = index;
+};
+</script>
+<style scoped>
+/* Add the styles as needed */
+.active {
+  color: #daa556;
+}
+</style>

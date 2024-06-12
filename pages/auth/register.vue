@@ -189,6 +189,9 @@ import { useRouter } from "vue-router";
 import axios from "axios";
 import { useVuelidate } from "@vuelidate/core";
 import { required, email, minLength } from "@vuelidate/validators";
+import { useUserStore } from "../stores/user";
+//get store
+const data = useUserStore();
 const form = ref({
   name: "",
   family: "",
@@ -217,6 +220,7 @@ const register = async () => {
       localStorage.setItem("user-info", JSON.stringify(res.data));
       alert("اضافه شد");
       router.push("/");
+      data.logIn();
     } else {
       alert(" اطلاعات ذخیره تشد  ");
     }
