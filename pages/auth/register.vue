@@ -212,7 +212,7 @@ const register = async () => {
     console.log("Logging in...");
     console.log(unref(v$).$validate());
     if (v$.value.$error) {
-      // Error
+      showError("لطفاً اطلاعات ثبت نام را به درستی وارد کنید");
       return;
     }
     const res = await axios.post("http://localhost:8000/users", form.value);
@@ -220,15 +220,18 @@ const register = async () => {
       userStore.logIn(result.data[0]);
       alert("اضافه شد");
       router.push("/");
-      userStore.logIn();
     } else {
-      alert(" اطلاعات ذخیره تشد  ");
+      showError("اطلاعات ذخیره تشد");
     }
   } catch (error) {
-    alert("خطا در سمت سرور");
+    showError("خطا در سمت سرور");
   }
 };
-
+const showError = (message) => {
+  // Use toast or alert to show the error message to the user
+  // For example:
+  alert(message);
+};
 const onSubmit = (event) => {
   event.preventDefault();
   register();

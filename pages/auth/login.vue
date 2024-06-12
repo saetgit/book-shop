@@ -80,7 +80,7 @@ const login = async () => {
     console.log("Logging in...");
     console.log(unref(v$).$validate());
     if (v$.value.$error) {
-      // Error
+      showError("لطفاً اطلاعات ورود را به درستی وارد کنید");
       return;
     }
     // notify user form is invalid
@@ -94,20 +94,20 @@ const login = async () => {
       userStore.logIn();
     } else {
       console.error("Login failed:", result);
+      showError("ایمیل یا رمزعبور اشتباه است");
     }
     return;
   } catch (error) {
     console.error("Login failed:", error);
+    showError("خطا در ورود به سیستم");
   }
 };
 
-onMounted(() => {
-  const user = localStorage.getItem("user-info");
-  if (user) {
-    router.push("/");
-  }
-});
-
+const showError = (message) => {
+  // Use toast or alert to show the error message to the user
+  // For example:
+  alert(message);
+};
 const rules = computed(() => {
   return {
     email: { required, email, $message: "لطفاً یک ایمیل معتبر وارد کنید." },
