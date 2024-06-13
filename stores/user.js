@@ -21,5 +21,14 @@ export const useUserStore = defineStore('user', {
       this.userInfo = null; 
     },
   },
-  
+  persist: {
+    enabled: true,
+    strategies: [
+      {
+        key: 'user',
+        storage: typeof window !== 'undefined' ? localStorage : null,
+        paths: ['auth']
+      },
+    ],
+  },
 })
