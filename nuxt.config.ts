@@ -10,5 +10,11 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  
+  pinia: {
+      autoImports: [
+        // Automatically imports `defineStore`
+        'defineStore',
+      ],
+  },
+  plugins: ['~/plugins/pinia-persistedstate.js'],
 });

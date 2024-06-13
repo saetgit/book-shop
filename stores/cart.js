@@ -1,12 +1,10 @@
 import { defineStore } from 'pinia'
-
 import db from '~/data/db.json'
+
 export const useShoppingStore = defineStore('cart', {
   state: () => ({
     products: db.books,
-    cartItems: [] ,
-    isLoggedIn: false,
-
+    cartItems: [],
   }),
 
   getters: {
@@ -47,7 +45,6 @@ export const useShoppingStore = defineStore('cart', {
         if (this.cartItems[index].quantity === 0) {
           this.cartItems = this.cartItems.filter(product => product.id !== item.id);
         }
-
         console.log("remove");
       }
     },
@@ -55,11 +52,14 @@ export const useShoppingStore = defineStore('cart', {
       this.cartItems = this.cartItems.filter(product => product.id !== item.id);
       console.log("remove");
     },
-    logIn() {
-      this.isLoggedIn = true;
-    },
-    logOut() {
-      this.isLoggedIn = false;
-    },
+  },
+  persist: {
+    enabled: true,
+    strategies: [
+      {
+        key: 'cart',
+        storage: typeof window !== 'undefined' ? localStorage : null,
+      },
+    ],
   },
 })
