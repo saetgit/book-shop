@@ -23,18 +23,22 @@
           </ul>
         </div>
         <div class="flex items-center space-x-4">
-          <div
-            v-if="!userStore.auth.isLoggedIn"
-            class="px-3 py-5 cursor-pointer hover:text-[#c2a67f]"
-          >
-            <router-link :to="'/auth/login'">ورود</router-link>
+          <div v-if="!userStore.isInitialized">در حال بارگذاری...</div>
+          <div v-else class="flex items-center space-x-4">
+            <div
+              v-if="!userStore.auth.isLoggedIn"
+              class="px-3 py-5 cursor-pointer hover:text-[#c2a67f]"
+            >
+              <router-link :to="'/auth/login'">ورود</router-link>
+            </div>
+            <div
+              v-if="!userStore.auth.isLoggedIn"
+              class="px-3 py-5 cursor-pointer hover:text-[#c2a67f]"
+            >
+              <router-link :to="'/auth/register'">ثبت نام</router-link>
+            </div>
           </div>
-          <div
-            v-if="!userStore.auth.isLoggedIn"
-            class="px-3 py-5 cursor-pointer hover:text-[#c2a67f]"
-          >
-            <router-link :to="'/auth/register'">ثبت نام</router-link>
-          </div>
+
           <div v-if="userStore.auth.isLoggedIn">
             <div @click="logOut" class="px-3 py-5 cursor-pointer hover:text-[#c2a67f]">
               <span>خروج</span>
@@ -53,7 +57,7 @@
 <script setup>
 import { useUserStore } from "../stores/user";
 import { useShoppingStore } from "../stores/cart";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 
 const userStore = useUserStore();
@@ -76,6 +80,10 @@ const menuItems = ref([
 const handleItemClick = (index) => {
   activeItem.value = index;
 };
+
+onMounted(async () => {
+  await cartStore.loadCart();
+});
 </script>
 <style scoped>
 /* Add the styles as needed */

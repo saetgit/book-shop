@@ -5,7 +5,8 @@ export const useUserStore = defineStore('user', {
     auth:{
       isLoggedIn: false,
       userInfo:{}
-    }
+    },
+    isInitialized: false,
   }),
 
   getters: {
@@ -15,10 +16,15 @@ export const useUserStore = defineStore('user', {
     logIn(user) {
       this.auth.isLoggedIn = true;
       this.userInfo = user; 
+      this.isInitialized = true;
     },
     logOut() {
       this.auth.isLoggedIn = false;
-      this.userInfo = null; 
+      this.userInfo = {}; 
+      this.isInitialized = true;
+    },
+    initialize() {
+      this.isInitialized = true;
     },
   },
   persist: {

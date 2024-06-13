@@ -21,3 +21,7 @@ export const getLogos = () => {
 export const getBooksId = (itemId) => {
     return apiClient.get(URLs.GET_BOOKSID(itemId));
 };
+
+export const getCart = () => {
+    return apiClient.post(URLs.GET_CART);
+};
