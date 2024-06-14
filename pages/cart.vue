@@ -13,22 +13,22 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in data.getCartItems" :key="item.id" class="border-b">
-          <td class="py-2 text-center">{{ item.id }}</td>
+        <tr v-for="(item, index) in cartItems" :key="item.id" class="border-b">
+          <td class="py-2 text-center">{{ index + 1 }}</td>
           <td class="py-2 text-center">
             <img :src="item.picture" class="fluid rounded w-14 h-14" :alt="item.title" />
           </td>
           <td class="py-2 text-center">{{ item.title }}</td>
           <td class="py-2 text-center">
             <button
-              @click="data.incrementQ(item)"
+              @click="incrementQ(item)"
               class="px-2 py-1 bg-blue-500 text-white rounded"
             >
               +
             </button>
             <span class="mx-2">{{ item.quantity }}</span>
             <button
-              @click="data.decrementQ(item)"
+              @click="decrementQ(item)"
               class="px-2 py-1 bg-red-500 text-white rounded"
             >
               -
@@ -38,7 +38,7 @@
           <td class="py-2 text-center">
             <span
               class="bi bi-cart-x text-red-500 cursor-pointer"
-              @click="data.removeFromCart(item)"
+              @click="removeFromCart(item)"
               >x</span
             >
           </td>
@@ -48,12 +48,7 @@
           <th colSpan="5" class="text-center py-2">قیمت کل</th>
           <td colSpan="2" class="text-center py-2">
             <span class="badge bg-red-500 text-white rounded-full px-4 py-1">
-              ${{
-                data.cartItems.reduce(
-                  (acc, item) => (acc += item.price * item.quantity),
-                  0
-                )
-              }}
+              ${{ totalCartPrice }}
             </span>
           </td>
         </tr>
@@ -64,8 +59,22 @@
 
 <script setup>
 import { useShoppingStore } from "../stores/cart";
-//get store
-const data = useShoppingStore();
+import { onMounted } from "vue";
+
+const {
+  cartItems,
+  incrementQ,
+  decrementQ,
+  removeFromCart,
+  saveCart,
+  totalCartPrice,
+  loadCart,
+} = useShoppingStore();
+
+// Load cart items when component is mounted
+onMounted(() => {
+  loadCart();
+});
 </script>
 
 <style>

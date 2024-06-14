@@ -64,13 +64,28 @@ export const useShoppingStore = defineStore('cart', {
     },
 
     async saveCart() {
-      console.log("Cart saved");
+      console.log("---------------Cart saved");
+      await this.saveCartItems(); // Ensure to await the saving of cart items
+    },
+
+    async saveCartItems() {
+      try {
+        const response = await postCart(this.cartItems); // Pass this.cartItems to postCart function
+        if (response && response.data) {
+          // Assuming response.data is the updated cart items data
+          this.cartItems = response.data; // Update local cart items with response data
+          console.log("Cart items updated:", this.cartItems);
+        } else {
+          console.error("Invalid response format:", response);
+        }
+      } catch (error) {
+        console.error("Error saving cart items:", error);
+      }
     },
 
     async loadCart() {
       try {
-        const response = await postCart(); // Await the axios promise directly
-        this.cartItems = response.data; // Assuming response.data contains your cart items
+        this.cartItems = db.cart || []; // Load initial cart items from db
         this.isInitialized = true;
       } catch (error) {
         console.error("Error loading cart:", error);

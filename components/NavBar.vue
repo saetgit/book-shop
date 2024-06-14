@@ -23,25 +23,24 @@
           </ul>
         </div>
         <div class="flex items-center space-x-4">
-          <div v-if="!userStore.isInitialized">
+          <div v-if="!userStore.$state.isInitialized">
             <img src="/static/images/loading.svg" class="h-10" alt="loading" />
           </div>
           <div v-else class="flex items-center space-x-4">
             <div
-              v-if="!userStore.auth.isLoggedIn"
+              v-if="!userStore.$state.auth.isLoggedIn"
               class="px-3 py-5 cursor-pointer hover:text-[#c2a67f]"
             >
               <router-link :to="'/auth/login'">ورود</router-link>
             </div>
             <div
-              v-if="!userStore.auth.isLoggedIn"
+              v-if="!userStore.$state.auth.isLoggedIn"
               class="px-3 py-5 cursor-pointer hover:text-[#c2a67f]"
             >
               <router-link :to="'/auth/register'">ثبت نام</router-link>
             </div>
           </div>
-
-          <div v-if="userStore.auth.isLoggedIn">
+          <div v-if="userStore.$state.auth.isLoggedIn">
             <div @click="logOut" class="px-3 py-5 cursor-pointer hover:text-[#c2a67f]">
               <span>خروج</span>
             </div>
@@ -84,7 +83,8 @@ const handleItemClick = (index) => {
 };
 
 onMounted(async () => {
-  // await cartStore.loadCart();
+  await userStore.initialize();
+  await cartStore.loadCart();
 });
 </script>
 <style scoped>

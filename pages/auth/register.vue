@@ -184,9 +184,9 @@
 </template>
 
 <script setup>
+import { postUser } from "~/api/appService";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import axios from "axios";
 import { useVuelidate } from "@vuelidate/core";
 import { required, email, minLength } from "@vuelidate/validators";
 import { useUserStore } from "../stores/user";
@@ -209,22 +209,24 @@ const router = useRouter();
 
 const register = async () => {
   try {
-    console.log("Logging in...");
     console.log(unref(v$).$validate());
     if (v$.value.$error) {
       showError("لطفاً اطلاعات ثبت نام را به درستی وارد کنید");
       return;
     }
-    const res = await axios.post("http://localhost:8000/users", form.value);
+    const res = await postUser(form.value);
+
     if (res.status == 201) {
-      userStore.logIn(result.data[0]);
+      userStore.logIn(res.data[0]);
       alert("اضافه شد");
       router.push("/");
     } else {
       showError("اطلاعات ذخیره تشد");
     }
   } catch (error) {
-    showError("خطا در سمت سرور");
+    console.log(error);
+
+    // showError("خطا در سمت سرور");
   }
 };
 const showError = (message) => {

@@ -7,6 +7,7 @@ export const URLs = {
     GET_LOGOS: `${API_BASE_URL}/logo`,
     GET_USERS: `${API_BASE_URL}/users`,
     POST_CART: `${API_BASE_URL}/cart`,
-    // POST_USER: `${API_BASE_URL}/users`,
+    GET_CART: `${API_BASE_URL}/cart`,
+    POST_USER: `${API_BASE_URL}/users`,
 
 };

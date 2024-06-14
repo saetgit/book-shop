@@ -22,11 +22,15 @@ export const getBooksId = (itemId) => {
     return apiClient.get(URLs.GET_BOOKSID(itemId));
 };
 
-export const postCart = () => {
-    return apiClient.post(URLs.POST_CART);
+export const postCart = (cartItems) => {
+    return apiClient.post(URLs.POST_CART,cartItems);
 };
 
-// export const postUser = (userInfo) => {
-//     return apiClient.post(URLs.POST_USER,userInfo);
+export const postUser = (userInfo) => {
+    return apiClient.post(URLs.POST_USER,userInfo);
 
-// };
+};
+
+export const getCart = () => {
+    return apiClient.get(URLs.GET_CART);
+};
