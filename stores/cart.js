@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import db from '~/data/db.json';
-import { getCart } from "~/api/appService";
+import { postCart } from "~/api/appService";
 
 export const useShoppingStore = defineStore('cart', {
   state: () => ({
@@ -69,7 +69,7 @@ export const useShoppingStore = defineStore('cart', {
 
     async loadCart() {
       try {
-        const response = await getCart(); // Await the axios promise directly
+        const response = await postCart(); // Await the axios promise directly
         this.cartItems = response.data; // Assuming response.data contains your cart items
         this.isInitialized = true;
       } catch (error) {

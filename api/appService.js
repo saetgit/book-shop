@@ -22,6 +22,11 @@ export const getBooksId = (itemId) => {
     return apiClient.get(URLs.GET_BOOKSID(itemId));
 };
 
-export const getCart = () => {
-    return apiClient.post(URLs.GET_CART);
+export const postCart = () => {
+    return apiClient.post(URLs.POST_CART);
 };
+
+// export const postUser = (userInfo) => {
+//     return apiClient.post(URLs.POST_USER,userInfo);
+
+// };

@@ -23,7 +23,9 @@
           </ul>
         </div>
         <div class="flex items-center space-x-4">
-          <div v-if="!userStore.isInitialized">در حال بارگذاری...</div>
+          <div v-if="!userStore.isInitialized">
+            <img src="/static/images/loading.svg" class="h-10" alt="loading" />
+          </div>
           <div v-else class="flex items-center space-x-4">
             <div
               v-if="!userStore.auth.isLoggedIn"
@@ -82,7 +84,7 @@ const handleItemClick = (index) => {
 };
 
 onMounted(async () => {
-  await cartStore.loadCart();
+  // await cartStore.loadCart();
 });
 </script>
 <style scoped>
