@@ -9,5 +9,5 @@ export const URLs = {
     POST_CART: `${API_BASE_URL}/cart`,
     GET_CART: `${API_BASE_URL}/cart`,
     POST_USER: `${API_BASE_URL}/users`,
-
+    DELETE_CART:`${API_BASE_URL}/cart`,
 };

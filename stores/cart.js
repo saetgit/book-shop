@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import db from '~/data/db.json';
-import { postCart } from "~/api/appService";
+import { postCart,deleteCart } from "~/api/appService";
 
 export const useShoppingStore = defineStore('cart', {
   state: () => ({
@@ -20,6 +20,8 @@ export const useShoppingStore = defineStore('cart', {
 
   actions: {
     async addToCart(item) {
+     await postCart(item);
+
       const index = this.cartItems.findIndex(product => product.id === item.id);
       if (index !== -1) {
         this.cartItems[index].quantity += 1;
@@ -33,7 +35,6 @@ export const useShoppingStore = defineStore('cart', {
           console.error('Item is undefined');
         }
       }
-      await this.saveCart();
     },
 
     async incrementQ(item) {
@@ -41,7 +42,6 @@ export const useShoppingStore = defineStore('cart', {
       if (index !== -1) {
         this.cartItems[index].quantity += 1;
         console.log("add");
-        await this.saveCart();
       }
     },
 
@@ -53,35 +53,35 @@ export const useShoppingStore = defineStore('cart', {
           this.cartItems = this.cartItems.filter(product => product.id !== item.id);
         }
         console.log("remove");
-        await this.saveCart();
+
       }
     },
 
     async removeFromCart(item) {
       this.cartItems = this.cartItems.filter(product => product.id !== item.id);
       console.log("remove");
-      await this.saveCart();
+      await deleteCart(item);
     },
 
-    async saveCart() {
-      console.log("---------------Cart saved");
-      await this.saveCartItems(); // Ensure to await the saving of cart items
-    },
+    // async saveCart() {
+    //   console.log("---------------Cart saved");
+    //   await this.saveCartItems(); // Ensure to await the saving of cart items
+    // },
 
-    async saveCartItems() {
-      try {
-        const response = await postCart(this.cartItems); // Pass this.cartItems to postCart function
-        if (response && response.data) {
-          // Assuming response.data is the updated cart items data
-          this.cartItems = response.data; // Update local cart items with response data
-          console.log("Cart items updated:", this.cartItems);
-        } else {
-          console.error("Invalid response format:", response);
-        }
-      } catch (error) {
-        console.error("Error saving cart items:", error);
-      }
-    },
+    // async saveCartItems() {
+    //   try {
+    //     const response = await postCart(this.cartItems); // Pass this.cartItems to postCart function
+    //     if (response && response.data) {
+    //       // Assuming response.data is the updated cart items data
+    //       this.cartItems = response.data; // Update local cart items with response data
+    //       console.log("Cart items updated:", this.cartItems);
+    //     } else {
+    //       console.error("Invalid response format:", response);
+    //     }
+    //   } catch (error) {
+    //     console.error("Error saving cart items:", error);
+    //   }
+    // },
 
     async loadCart() {
       try {

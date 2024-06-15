@@ -34,3 +34,7 @@ export const postUser = (userInfo) => {
 export const getCart = () => {
     return apiClient.get(URLs.GET_CART);
 };
+
+export const deleteCart = (item) => {
+    return apiClient.delete(URLs.DELETE_CART,item);
+};
