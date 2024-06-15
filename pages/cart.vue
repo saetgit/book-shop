@@ -66,7 +66,6 @@ const {
   incrementQ,
   decrementQ,
   removeFromCart,
-  saveCart,
   totalCartPrice,
   loadCart,
 } = useShoppingStore();

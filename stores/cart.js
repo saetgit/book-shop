@@ -58,31 +58,19 @@ export const useShoppingStore = defineStore('cart', {
     },
 
     async removeFromCart(item) {
-      this.cartItems = this.cartItems.filter(product => product.id !== item.id);
-      console.log("remove");
-      await deleteCart(item);
+      try {
+        const response = await deleteCart(item.id);
+        if (response.status === 200) {
+          this.cartItems = this.cartItems.filter(product => product.id !== item.id);
+          console.log("remove");
+        } else {
+          console.error('Error removing from cart:', response);
+        }
+      } catch (error) {
+        console.error('Error removing from cart:', error);
+      }
     },
-
-    // async saveCart() {
-    //   console.log("---------------Cart saved");
-    //   await this.saveCartItems(); // Ensure to await the saving of cart items
-    // },
-
-    // async saveCartItems() {
-    //   try {
-    //     const response = await postCart(this.cartItems); // Pass this.cartItems to postCart function
-    //     if (response && response.data) {
-    //       // Assuming response.data is the updated cart items data
-    //       this.cartItems = response.data; // Update local cart items with response data
-    //       console.log("Cart items updated:", this.cartItems);
-    //     } else {
-    //       console.error("Invalid response format:", response);
-    //     }
-    //   } catch (error) {
-    //     console.error("Error saving cart items:", error);
-    //   }
-    // },
-
+    
     async loadCart() {
       try {
         this.cartItems = db.cart || []; // Load initial cart items from db
