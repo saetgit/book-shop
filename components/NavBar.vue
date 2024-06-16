@@ -46,20 +46,20 @@
             </div>
           </div>
           <router-link :to="'/cart'" class="flex">
-            <img src="/static/icons/bag.svg" class="h-5 w-5" alt="bag" />{{
-              cartStore.countCartItems
-            }}
+            <img src="/static/icons/bag.svg" class="h-5 w-5" alt="bag" />
+            {{ cartStore.countCartItems }}
           </router-link>
         </div>
       </div>
     </nav>
   </header>
 </template>
+
 <script setup>
-import { useUserStore } from "../stores/user";
-import { useShoppingStore } from "../stores/cart";
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
+import { useUserStore } from "../stores/user";
+import { useShoppingStore } from "../stores/cart";
 
 const userStore = useUserStore();
 const cartStore = useShoppingStore();
@@ -87,8 +87,8 @@ onMounted(async () => {
   await cartStore.loadCart();
 });
 </script>
+
 <style scoped>
-/* Add the styles as needed */
 .active {
   color: #daa556;
 }

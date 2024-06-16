@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { getBooks, postCart, deleteCart } from "~/api/appService";
+import { getBooks, postCart, deleteCart, getCart } from "~/api/appService";
 
 export const useShoppingStore = defineStore('cart', {
   state: () => ({
@@ -9,11 +9,14 @@ export const useShoppingStore = defineStore('cart', {
   }),
 
   getters: {
-    countCartItems() {
-      return this.cartItems.length;
+    countCartItems(state) {
+      return state.cartItems.length;
     },
-    getCartItems() {
-      return this.cartItems;
+    getCartItems(state) {
+      return state.cartItems;
+    },
+    totalCartPrice(state) {
+      return state.cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
     },
   },
 
@@ -49,10 +52,9 @@ export const useShoppingStore = defineStore('cart', {
       if (index !== -1) {
         this.cartItems[index].quantity -= 1;
         if (this.cartItems[index].quantity === 0) {
-          this.cartItems = this.cartItems.filter(product => product.id !== item.id);
+          this.cartItems.splice(index, 1); // Use splice for reactivity
+          console.log("remove");
         }
-        console.log("remove");
-
       }
     },
 
@@ -60,8 +62,11 @@ export const useShoppingStore = defineStore('cart', {
       try {
         const response = await deleteCart(item.id);
         if (response.status === 200) {
-          this.cartItems = this.cartItems.filter(product => product.id !== item.id);
-          console.log("remove");
+          const index = this.cartItems.findIndex(product => product.id === item.id);
+          if (index !== -1) {
+            this.cartItems.splice(index, 1); // Use splice for reactivity
+            console.log("remove");
+          }
         } else {
           console.error('Error removing from cart:', response);
         }
@@ -69,15 +74,16 @@ export const useShoppingStore = defineStore('cart', {
         console.error('Error removing from cart:', error);
       }
     },
+    
 
     async loadCart() {
       try {
-        // Replace this with actual loading logic if you have a persistence layer
-        this.cartItems = db.cart || []; // Ensure db.cart is a POJO
+        const cart = await getCart();
+        this.cartItems = Array.isArray(cart) ? cart : [];
         this.isInitialized = true;
       } catch (error) {
         console.error("Error loading cart:", error);
-        // Handle error as needed (e.g., set a flag, show a message)
+        this.cartItems = [];
       }
     },
 
@@ -86,7 +92,6 @@ export const useShoppingStore = defineStore('cart', {
         this.products = await getBooks();
       } catch (error) {
         console.error("Error loading products:", error);
-        // Handle error as needed
       }
     },
   },

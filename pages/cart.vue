@@ -61,6 +61,7 @@
 import { useShoppingStore } from "../stores/cart";
 import { onMounted } from "vue";
 
+const cartStore = useShoppingStore();
 const {
   cartItems,
   incrementQ,
@@ -68,7 +69,7 @@ const {
   removeFromCart,
   totalCartPrice,
   loadCart,
-} = useShoppingStore();
+} = cartStore;
 
 // Load cart items when component is mounted
 onMounted(() => {

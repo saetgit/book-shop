@@ -12,7 +12,6 @@
 </template>
 
 <script setup>
-import axios from "axios";
 import { useShoppingStore } from "../stores/cart";
 const data = useShoppingStore();
 const booksData = ref([]);
