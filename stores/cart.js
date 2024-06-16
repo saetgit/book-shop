@@ -1,10 +1,9 @@
 import { defineStore } from 'pinia';
-import db from '~/data/db.json';
-import { postCart,deleteCart } from "~/api/appService";
+import { getBooks, postCart, deleteCart } from "~/api/appService";
 
 export const useShoppingStore = defineStore('cart', {
   state: () => ({
-    products: db.books,
+    products: getBooks(),
     cartItems: [],
     isInitialized: false,
   }),
@@ -20,7 +19,7 @@ export const useShoppingStore = defineStore('cart', {
 
   actions: {
     async addToCart(item) {
-     await postCart(item);
+      await postCart(item);
 
       const index = this.cartItems.findIndex(product => product.id === item.id);
       if (index !== -1) {
@@ -70,7 +69,7 @@ export const useShoppingStore = defineStore('cart', {
         console.error('Error removing from cart:', error);
       }
     },
-    
+
     async loadCart() {
       try {
         this.cartItems = db.cart || []; // Load initial cart items from db
