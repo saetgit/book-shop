@@ -59,7 +59,8 @@
 </template>
 
 <script setup>
-import { reactive, onMounted, computed } from "vue";
+import { reactive, computed } from "vue";
+import { getUser } from "~/api/appService";
 import axios from "axios";
 import { useRouter } from "vue-router";
 import { useVuelidate } from "@vuelidate/core";
@@ -83,15 +84,13 @@ const login = async () => {
       showError("لطفاً اطلاعات ورود را به درستی وارد کنید");
       return;
     }
-    // notify user form is invalid
-    const result = await axios.get(
-      `http://localhost:8000/users?email=${form.email}&password=${form.password}`
-    );
+
+    const result = await getUser(form.email, form.password);
+
     if (result.status == 200 && result.data.length > 0) {
       userStore.logIn(result.data[0]);
       router.push("/");
-      console.log("Login successful!");
-      userStore.logIn();
+      console.log("Login successful!", result.data[0]);
     } else {
       console.error("Login failed:", result);
       showError("ایمیل یا رمزعبور اشتباه است");

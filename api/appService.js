@@ -31,6 +31,10 @@ export const postUser = (userInfo) => {
 
 };
 
+export const getUser = (email,password) => {
+    return apiClient.get(URLs.GET_USER,email,password);
+};
+
 export const getCart = () => {
     return apiClient.get(URLs.GET_CART);
 };

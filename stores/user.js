@@ -15,12 +15,12 @@ export const useUserStore = defineStore('user', {
   actions: {
     logIn(user) {
       this.auth.isLoggedIn = true;
-      this.userInfo = user; 
+      this.auth.userInfo = user; 
       this.isInitialized = true;
     },
     logOut() {
       this.auth.isLoggedIn = false;
-      this.userInfo = {}; 
+      this.auth.userInfo = {}; 
       this.isInitialized = true;
     },
     initialize() {
