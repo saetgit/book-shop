@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useShoppingStore } from "../stores/cart";
 const data = useShoppingStore();
 
@@ -46,10 +46,9 @@ const props = defineProps({
 
 const showButton = ref(false);
 
-// const addToCart = () => {
-//   store.commit("addToCart", props.book);
-//   alert("hhhhhhhhhhhhhh");
-// };
+onMounted(async () => {
+  await data.loadProducts();
+});
 </script>
 
 <style scoped>

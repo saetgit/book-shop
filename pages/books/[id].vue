@@ -62,5 +62,6 @@ onMounted(async () => {
   } catch (error) {
     console.error("Error loading book:", error);
   }
+  await data.loadProducts();
 });
 </script>

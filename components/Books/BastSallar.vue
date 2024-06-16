@@ -26,4 +26,9 @@
 import { useShoppingStore } from "../stores/cart";
 const data = useShoppingStore();
 const props = defineProps(["book"]);
+import { onMounted } from "vue";
+
+onMounted(async () => {
+  await data.loadProducts();
+});
 </script>

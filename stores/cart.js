@@ -3,7 +3,7 @@ import { getBooks, postCart, deleteCart } from "~/api/appService";
 
 export const useShoppingStore = defineStore('cart', {
   state: () => ({
-    products: getBooks(),
+    products: [],
     cartItems: [],
     isInitialized: false,
   }),
@@ -72,11 +72,21 @@ export const useShoppingStore = defineStore('cart', {
 
     async loadCart() {
       try {
-        this.cartItems = db.cart || []; // Load initial cart items from db
+        // Replace this with actual loading logic if you have a persistence layer
+        this.cartItems = db.cart || []; // Ensure db.cart is a POJO
         this.isInitialized = true;
       } catch (error) {
         console.error("Error loading cart:", error);
         // Handle error as needed (e.g., set a flag, show a message)
+      }
+    },
+
+    async loadProducts() {
+      try {
+        this.products = await getBooks();
+      } catch (error) {
+        console.error("Error loading products:", error);
+        // Handle error as needed
       }
     },
   },
