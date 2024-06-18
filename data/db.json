@@ -209,6 +209,27 @@
       "sales": 490
     },
     {
+      "id": "3",
+      "title": "پنجره به زمان گذشته",
+      "author": "فاطمه محمدی",
+      "description": "داستانی دلنشین از یک دختر جوان که با یک پنجره جادویی به زمان گذشته سفر می‌کند.",
+      "price": 20.5,
+      "picture": "images/books/product-item3.jpg",
+      "category": "رمان",
+      "sales": 7000
+    },
+    {
+      "id": "3",
+      "title": "پنجره به زمان گذشته",
+      "author": "فاطمه محمدی",
+      "description": "داستانی دلنشین از یک دختر جوان که با یک پنجره جادویی به زمان گذشته سفر می‌کند.",
+      "price": 20.5,
+      "picture": "images/books/product-item3.jpg",
+      "category": "رمان",
+      "sales": 7000,
+      "quantity": 1
+    },
+    {
       "id": "1",
       "title": "جستجوی زمان از دست رفته",
       "author": "میترا کمالی",
@@ -217,6 +238,36 @@
       "picture": "images/books/product-item1.jpg",
       "category": "علمی",
       "sales": 100
+    },
+    {
+      "id": "2",
+      "title": "سایه‌های گذرناپذیر",
+      "author": "علی احمدی",
+      "description": "یک رمان تاریخی مهیج دربارهٔ ماجراهای یک قهرمان در دوران گذرناپذیر.",
+      "price": 29.95,
+      "picture": "images/books/product-item2.jpg",
+      "category": "تاریخی",
+      "sales": 490
+    },
+    {
+      "id": "1",
+      "title": "جستجوی زمان از دست رفته",
+      "author": "میترا کمالی",
+      "description": "داستانی جذاب از ماجراهای یک جوان در جستجوی زمان گم‌شده.",
+      "price": 25.99,
+      "picture": "images/books/product-item1.jpg",
+      "category": "علمی",
+      "sales": 100
+    },
+    {
+      "id": "2",
+      "title": "سایه‌های گذرناپذیر",
+      "author": "علی احمدی",
+      "description": "یک رمان تاریخی مهیج دربارهٔ ماجراهای یک قهرمان در دوران گذرناپذیر.",
+      "price": 29.95,
+      "picture": "images/books/product-item2.jpg",
+      "category": "تاریخی",
+      "sales": 490
     }
   ]
 }
